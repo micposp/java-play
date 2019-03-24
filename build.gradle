@@ -3,7 +3,7 @@
  *
  * This generated file contains a sample Java project to get you started.
  * For more details take a look at the Java Quickstart chapter in the Gradle
- * User Manual available at https://docs.gradle.org/5.3/userguide/tutorial_java_projects.html
+ * User Manual available at https://docs.gradle.org/5.2.1/userguide/tutorial_java_projects.html
  */
 
 plugins {
@@ -29,4 +29,4 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'java.play.App'
+mainClassName = 'io.github.micposp.App'
