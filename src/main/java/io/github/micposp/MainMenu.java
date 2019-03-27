@@ -71,7 +71,12 @@ public class MainMenu extends AbstractMenu {
     private static class InputOutOfBand extends Exception { }
 
     private void Create() {
-        this.dbWorker.Create();
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("Choose filename: ");
+        String filename = in.nextLine();
+
+        this.dbWorker.Create(filename);
     }
 
     private void Search() {
