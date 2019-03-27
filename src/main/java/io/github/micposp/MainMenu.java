@@ -80,7 +80,12 @@ public class MainMenu extends AbstractMenu {
     }
 
     private void Search() {
-        this.dbWorker.Search();
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("Choose name: ");
+        String name = in.nextLine();
+
+        this.dbWorker.Search(name);
     }
 
     private void Sort() {

@@ -21,9 +21,16 @@ public class DbWorker {
         }
     }
 
-    public void Search() {
+    public void Search(String name) {
         if (this.lines!=null) {
             System.out.println(Arrays.toString(this.lines.toArray()));
+            for (int i = 0; i < this.lines.size(); i++) {
+                if (this.lines.get(i).equalsIgnoreCase(name)) {
+                    System.out.println(name + " is found");
+                    return;
+                }
+            }
+            System.out.println(name + " is not found");
         } else {
             System.out.println("Db is not initialized");
         }
