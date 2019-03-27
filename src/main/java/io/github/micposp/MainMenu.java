@@ -2,12 +2,15 @@ package io.github.micposp;
 //import io.github.micposp.*;
 //import java.util.Scanner;
 import java.util.*;
+import java.io.*;
 
 public class MainMenu extends AbstractMenu {
+    private DbWorker dbWorker;
 
-    public MainMenu() {
+    public MainMenu(DbWorker dbWorker) {
         super();
         initMenuItems();
+        this.dbWorker=dbWorker;
     }
 
     private void initMenuItems() {
@@ -68,14 +71,14 @@ public class MainMenu extends AbstractMenu {
     private static class InputOutOfBand extends Exception { }
 
     private void Create() {
-
+        this.dbWorker.Create();
     }
 
     private void Search() {
-
+        this.dbWorker.Search();
     }
 
     private void Sort() {
-
+        this.dbWorker.Sort();
     }
 }
