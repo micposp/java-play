@@ -3,17 +3,20 @@ import java.io.*;
 import java.util.*;
 
 public class DbWorker {
-    private List<String> lines;
+    private List<Client> clients=null;
 
     public void Create(String filename) {
         try {
             FileReader fileReader = new FileReader(filename);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            this.lines = new ArrayList<String>();
+            this.clients = new ArrayList<Client>();
             String line = null;
+
             while ((line = bufferedReader.readLine()) != null) {
-                this.lines.add(line);
+                String[] clientArray=line.split(",");
+                this.clients.add(new Client(clientArray[0],Integer.parseInt(clientArray[1])));
             }
+
             bufferedReader.close();
         }
         catch (IOException e) {
@@ -22,14 +25,16 @@ public class DbWorker {
     }
 
     public void Search(String name) {
-        if (this.lines!=null) {
-            System.out.println(Arrays.toString(this.lines.toArray()));
-            for (int i = 0; i < this.lines.size(); i++) {
-                if (this.lines.get(i).equalsIgnoreCase(name)) {
+        if (this.clients!=null) {
+            System.out.println(Arrays.toString(this.clients.toArray()));
+
+            for (int i = 0; i < this.clients.size(); i++) {
+                if (this.clients.get(i).getName().equalsIgnoreCase(name)) {
                     System.out.println(name + " is found");
                     return;
                 }
             }
+
             System.out.println(name + " is not found");
         } else {
             System.out.println("Db is not initialized");
@@ -37,6 +42,47 @@ public class DbWorker {
     }
 
     public void Sort() {
+        if (this.clients!=null) {
+            System.out.println(Arrays.toString(this.clients.toArray()));
+            Collections.sort(this.clients);
+            System.out.println(Arrays.toString(this.clients.toArray()));
+        } else {
+            System.out.println("Db is not initialized");
+        }
+    }
 
+    public class Client implements Comparable<Client> {
+        private String name;
+        private int burnYear;
+
+        public Client(String name, int burnYear) {
+            this.name=name;
+            this.burnYear=burnYear;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        public void setName(String name) {
+            this.name=name;
+        }
+
+        public int getBurnYear() {
+            return this.burnYear;
+        }
+
+        public void setBurnYear(int burnYear) {
+            this.burnYear=burnYear;
+        }
+
+        public int compareTo(Client anotherClient) {
+            return this.burnYear - anotherClient.burnYear;
+        }
+
+        @Override
+        public String toString(){
+            return "("+this.getName()+", " +this.getBurnYear()+")";
+        }
     }
 }
