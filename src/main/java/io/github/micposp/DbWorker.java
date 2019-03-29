@@ -16,7 +16,7 @@ public class DbWorker {
             line = bufferedReader.readLine();
 
             while ((line = bufferedReader.readLine()) != null) {
-                String[] clientArray=line.split(";",5);
+                String[] clientArray=line.split("; ",5);
                 System.out.println(Arrays.toString(clientArray));
                 this.clients.add(new Client(clientArray[0], clientArray[1],
                                             Integer.parseInt(clientArray[2]),
