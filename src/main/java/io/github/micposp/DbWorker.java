@@ -31,18 +31,25 @@ public class DbWorker {
         }
     }
 
-    public void Search(String name) {
+    public void Search(String nameForSearch) {
         if (this.clients!=null) {
             System.out.println(Arrays.toString(this.clients.toArray()));
 
             for (int i = 0; i < this.clients.size(); i++) {
-                if (this.clients.get(i).getName().equalsIgnoreCase(name)) {
-                    System.out.println(name + " is found");
-                    return;
+                String[] fullName=this.clients.get(i).getName().split(" ");
+                String name="";
+
+                if (fullName.length>1) {
+                    name=fullName[1];
+                }
+
+                if (name.equalsIgnoreCase(nameForSearch)) {
+                    System.out.println(nameForSearch + " is found: " +
+                                       this.clients.get(i).toString());
                 }
             }
 
-            System.out.println(name + " is not found");
+            System.out.println(nameForSearch + " is not found");
         } else {
             System.out.println("Db is not initialized");
         }
